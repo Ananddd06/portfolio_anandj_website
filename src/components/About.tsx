@@ -42,50 +42,41 @@ const About = () => {
   }, []);
 
   return (
-    <section className="mt-20 w-full max-w-6xl mx-auto px-4 flex flex-col items-center">
-      {/* Heading */}
-      <motion.h3
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+    <section className="mt-20 flex items-center justify-center w-full max-w-6xl mx-auto px-4 flex-col md:flex-row">
+      {/* About Me Text */}
+      <motion.div
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
-        className="text-4xl md:text-5xl font-extrabold text-white text-center mb-8"
+        className="flex flex-col space-y-4 w-full md:w-1/2"
       >
-        About Me
-      </motion.h3>
+        <h3 className="text-3xl md:text-4xl font-bold text-white text-center mb-6">
+          About Me
+        </h3>
 
-      {/* Content Section */}
-      <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between w-full space-y-8 md:space-y-0">
-        {/* About Me Text */}
-        <motion.div
-          initial={{ opacity: 0, x: -100 }}
+        <motion.p
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="flex flex-col space-y-4 w-full md:w-1/2"
+          className="text-lg md:text-xl leading-relaxed text-gray-300 italic"
         >
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="text-lg md:text-xl leading-relaxed text-gray-300 italic"
-          >
-            <span ref={typedRefAboutMe}></span>
-          </motion.p>
-        </motion.div>
+          <span ref={typedRefAboutMe}></span>
+        </motion.p>
+      </motion.div>
 
-        {/* Image Section */}
-        <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="w-full md:w-1/2 flex justify-center"
-        >
-          <img
-            src="/profile.jpg" // Image from public folder
-            alt="Anand"
-            className="rounded-full w-40 h-40 md:w-60 md:h-60 object-cover shadow-lg"
-          />
-        </motion.div>
-      </div>
+      {/* Image Section */}
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0" // Add `mt-6` for spacing on small screens
+      >
+        <img
+          src="/profile.jpg" // Image from public folder
+          alt="Anand"
+          className="rounded-full w-60 h-60 object-cover"
+        />
+      </motion.div>
     </section>
   );
 };
