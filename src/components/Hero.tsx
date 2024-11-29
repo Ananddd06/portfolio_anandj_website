@@ -1,21 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Typed from 'typed.js';
+import About from './About'; // Import About component
 
 const Hero = () => {
-  const typedRefHero = useRef<HTMLSpanElement>(null); // Ref for the typing effect in Hero section
-  const typedRefAboutMe = useRef<HTMLSpanElement>(null); // Ref for the typing effect in About Me section
-
-  // About Me Text (Your provided content)
-  const aboutMeText = `
-    I’m a recent Electronics and Communication Engineering graduate from Rajalakshmi Engineering College, Chennai, 
-    passionate about leveraging technology to create innovative solutions. With a strong foundation in Data Structures 
-    and Algorithms (DSA), I specialize in Python, Java, React.js, React Native, and Expo to build high-performance web 
-    and mobile applications. I have hands-on experience with Clerk and Convex for seamless authentication and database integration.
-
-    Proficient in HTML, CSS, and TailwindCSS, I excel at creating responsive interfaces. I thrive in collaborative environments, 
-    focusing on clean, maintainable code and best practices. Let’s connect and create something extraordinary together!
-  `;
+  const typedRefHero = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (!typedRefHero.current) return;
@@ -31,7 +20,6 @@ const Hero = () => {
       cursorChar: '|',
       html: true,
       onComplete: () => {
-        // Add cursor blinking animation after typing is complete
         const cursorElement = document.querySelector('.typed-cursor');
         if (cursorElement) {
           cursorElement.classList.add('cursor-blink');
@@ -41,32 +29,6 @@ const Hero = () => {
 
     return () => {
       typedHero.destroy();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!typedRefAboutMe.current) return;
-
-    const typedAboutMe = new Typed(typedRefAboutMe.current, {
-      strings: [aboutMeText], // Full about me text
-      typeSpeed: 40,
-      backSpeed: 20,
-      backDelay: 1000,
-      startDelay: 500,
-      loop: false,
-      showCursor: true,
-      cursorChar: '|',
-      html: true,
-      onComplete: () => {
-        const cursorElement = document.querySelector('.typed-cursor');
-        if (cursorElement) {
-          cursorElement.classList.add('cursor-blink');
-        }
-      },
-    });
-
-    return () => {
-      typedAboutMe.destroy();
     };
   }, []);
 
@@ -108,7 +70,7 @@ const Hero = () => {
           className="mb-10"
         >
           <a
-            href="/resume.pdf"
+            href="/resume.pdf" // Link to your PDF file in the public folder
             download
             className="bg-dark-pink text-white px-6 py-2 rounded-md shadow-lg hover:bg-pink-600 transition duration-300"
           >
@@ -117,43 +79,8 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* About Me Section */}
-      <div className="mt-20 flex items-center justify-center w-full max-w-6xl mx-auto px-4">
-        {/* About Me Text */}
-        <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="flex flex-col space-y-4 w-full md:w-1/2"
-        >
-          <h3 className="text-2xl md:text-3xl font-semibold text-white text-center mb-4">
-            About Me
-          </h3>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="text-lg md:text-xl leading-relaxed text-gray-300 italic"
-          >
-            <span ref={typedRefAboutMe}></span>
-          </motion.p>
-        </motion.div>
-
-        {/* Image Section */}
-        <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="w-full md:w-1/2 flex justify-center mt-8 md:mt-0"
-        >
-          <img
-            src="/profile.jpg" // Image from public folder
-            alt="Anand"
-            className="rounded-lg w-60 h-80 object-cover" // Larger image, rectangular shape
-          />
-        </motion.div>
-      </div>
+      {/* About Section */}
+      <About /> {/* Include the About component */}
     </section>
   );
 };
