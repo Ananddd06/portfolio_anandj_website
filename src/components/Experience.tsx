@@ -7,7 +7,8 @@ const experiences = [
     timeframe: 'January 2024 - April 2024',
     role: 'ELV and ICT Design Engineer',
     company: 'Larsen & Toubro',
-    icon: Building2,
+    headerIcon: './l&t.png', // Path to the L&T logo for the header
+    icon: Building2, // Original icon for the gradient box
     details: [
       'Design and integrate ELV systems like fire alarms, CCTV, access control, and BMS into the data center',
       'Create engineering drawings and layouts using AutoCAD, ensuring compliance with standards',
@@ -19,7 +20,8 @@ const experiences = [
     timeframe: 'December 2024 - Present',
     role: 'AI/ML Engineer Intern',
     company: 'Gradtwin',
-    icon: Brain,
+    headerIcon: './gradtwin.png', // Path to the Gradtwin logo for the header
+    icon: Brain, // Original icon for the gradient box
     details: [
       'Developing and implementing machine learning models',
       'Working on natural language processing projects',
@@ -62,8 +64,13 @@ const Experience = () => {
               }`}
             >
               <div className="w-full md:w-1/2 space-y-4">
+                {/* Updated to show the image logo near the header */}
                 <div className="flex items-center gap-4">
-                  <Icon size={32} className="text-blue-500" />
+                  <img
+                    src={exp.headerIcon}
+                    alt={`${exp.company} logo`}
+                    className="w-10 h-10 object-contain"
+                  />
                   <h3 className="text-2xl font-bold">{exp.role}</h3>
                 </div>
                 <p className="text-xl text-gray-400">{exp.company}</p>
@@ -76,6 +83,7 @@ const Experience = () => {
               </div>
               <div className="w-full md:w-1/2 bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-8 rounded-lg">
                 <div className="aspect-video bg-gradient-to-br from-blue-600/30 to-purple-600/30 rounded-lg flex items-center justify-center">
+                  {/* Keep the original icon inside the box */}
                   <Icon size={64} className="text-white/50" />
                 </div>
               </div>
