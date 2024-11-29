@@ -16,19 +16,19 @@ const experiences = [
       'Prepare a Bill of Quantity based on technical specifications'
     ]
   },
-  {
-    timeframe: 'December 2024 - Present',
-    role: 'AI/ML Engineer Intern',
-    company: 'Gradtwin',
-    headerIcon: './gradtwin.png', // Path to the Gradtwin logo for the header
-    icon: Brain, // Original icon for the gradient box
-    details: [
-      'Developing and implementing machine learning models',
-      'Working on natural language processing projects',
-      'Collaborating with cross-functional teams on AI solutions',
-      'Contributing to data preprocessing and feature engineering'
-    ]
-  }
+  // {
+  //   timeframe: 'December 2024 - Present',
+  //   role: 'AI/ML Engineer Intern',
+  //   company: 'Gradtwin',
+  //   headerIcon: './gradtwin.png', // Path to the Gradtwin logo for the header
+  //   icon: Brain, // Original icon for the gradient box
+  //   details: [
+  //     'Developing and implementing machine learning models',
+  //     'Working on natural language processing projects',
+  //     'Collaborating with cross-functional teams on AI solutions',
+  //     'Contributing to data preprocessing and feature engineering'
+  //   ]
+  // }
 ];
 
 const Experience = () => {
