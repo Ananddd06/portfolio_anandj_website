@@ -28,12 +28,6 @@ const About = () => {
       showCursor: true,
       cursorChar: '|',
       html: true,
-      onComplete: () => {
-        const cursorElement = document.querySelector('.typed-cursor');
-        if (cursorElement) {
-          cursorElement.classList.add('cursor-blink');
-        }
-      },
     });
 
     return () => {
@@ -42,40 +36,37 @@ const About = () => {
   }, []);
 
   return (
-    <section className="mt-20 flex items-center justify-center w-full max-w-6xl mx-auto px-4 flex-col md:flex-row">
-      {/* About Me Text */}
-      <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
-        className="flex flex-col space-y-4 w-full md:w-1/2"
-      >
-        <h3 className="text-3xl md:text-4xl font-bold text-white text-center mb-6">
-          About Me
-        </h3>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="text-lg md:text-xl leading-relaxed text-gray-300 italic"
-        >
-          <span ref={typedRefAboutMe}></span>
-        </motion.p>
-      </motion.div>
-
+    <section className="mt-20 flex flex-col md:flex-row items-center justify-between w-full max-w-6xl mx-auto px-4">
       {/* Image Section */}
       <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0" // Add `mt-6` for spacing on small screens
+        className="w-full flex justify-center md:w-1/2 md:order-2 mb-6 md:mb-0"
       >
         <img
           src="/profile.jpg" // Image from public folder
           alt="Anand"
-          className="rounded-full w-60 h-60 object-cover"
+          className="rounded-full w-48 h-48 md:w-60 md:h-60 object-cover shadow-lg"
         />
+      </motion.div>
+
+      {/* About Me Text */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        className="flex flex-col w-full md:w-1/2 text-center md:text-left"
+      >
+        <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          About Me
+        </h3>
+
+        <div className="relative">
+          <p className="text-lg md:text-xl leading-relaxed text-gray-300 italic">
+            <span ref={typedRefAboutMe}></span>
+          </p>
+        </div>
       </motion.div>
     </section>
   );
