@@ -6,7 +6,7 @@ const projects = [
   {
     title: 'ATS-Friendly Resume Builder',
     description: 'Craft perfect, ATS-friendly resumes effortlessly with live editing and stunning templates!',
-    image: 'https://alison.com/html/site/img/resume-builder/build-a-resume.svg',
+    image: 'https://static.vecteezy.com/system/resources/previews/010/379/547/non_2x/close-up-of-resume-with-magnifying-glass-computer-laptop-and-pen-on-wooden-background-photo.jpg',
     tech: ['React', 'Node.js', 'Clerk', 'BrainTree' , 'Tailwind'],
     links: {
       github: 'https://github.com/Ananddd06/Resume_Builder_Website',
