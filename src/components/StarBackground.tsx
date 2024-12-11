@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 const StarBackground = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
+  const [isStarMode, setIsStarMode] = useState(true);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -16,7 +17,8 @@ const StarBackground = () => {
     renderer.setClearColor(0x000000);
     containerRef.current.appendChild(renderer.domElement);
 
-    const stars: THREE.Points[] = [];
+    const objects: THREE.Object3D[] = [];
+    const velocities: { x: number; y: number }[] = [];
     const starCount = 1000;
 
     function createStarField() {
@@ -37,8 +39,43 @@ const StarBackground = () => {
       });
 
       const starField = new THREE.Points(geometry, material);
-      stars.push(starField);
+      objects.push(starField);
       scene.add(starField);
+    }
+
+    function createBouncingBalls() {
+      for (let i = 0; i < 100; i++) {
+        const geometry = new THREE.SphereGeometry(5, 32, 32);
+        const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+        const sphere = new THREE.Mesh(geometry, material);
+
+        sphere.position.set(
+          (Math.random() - 0.5) * 800,
+          (Math.random() - 0.5) * 800,
+          (Math.random() - 0.5) * 800
+        );
+
+        objects.push(sphere);
+        velocities.push({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2 });
+        scene.add(sphere);
+      }
+    }
+
+    function toggleMode() {
+      // Clear existing objects
+      objects.forEach(obj => scene.remove(obj));
+      objects.length = 0;
+      velocities.length = 0;
+
+      if (isStarMode) {
+        renderer.setClearColor(0xffffff); // Set white background
+        createBouncingBalls();
+      } else {
+        renderer.setClearColor(0x000000); // Set black background
+        createStarField();
+      }
+
+      setIsStarMode(!isStarMode);
     }
 
     createStarField();
@@ -51,22 +88,40 @@ const StarBackground = () => {
       };
     };
 
+    const handleClick = () => {
+      toggleMode();
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('click', handleClick);
 
     const animate = () => {
       requestAnimationFrame(animate);
 
-      stars.forEach(star => {
-        star.rotation.x += 0.0002;
-        star.rotation.y += 0.0002;
-        star.rotation.z += 0.0002;
+      if (!isStarMode) {
+        // Update bouncing balls
+        objects.forEach((obj, i) => {
+          if (obj instanceof THREE.Mesh) {
+            obj.position.x += velocities[i].x;
+            obj.position.y += velocities[i].y;
 
-        star.position.x += mousePosition.current.x * 0.5;
-        star.position.y += mousePosition.current.y * 0.5;
+            // Bounce off walls
+            if (Math.abs(obj.position.x) > 400) velocities[i].x *= -1;
+            if (Math.abs(obj.position.y) > 400) velocities[i].y *= -1;
 
-        if (Math.abs(star.position.x) > 1000) star.position.x = 0;
-        if (Math.abs(star.position.y) > 1000) star.position.y = 0;
-      });
+            // React to cursor
+            const distance = Math.hypot(
+              obj.position.x - mousePosition.current.x * 800,
+              obj.position.y - mousePosition.current.y * 800
+            );
+
+            if (distance < 100) {
+              velocities[i].x += (obj.position.x > mousePosition.current.x * 800 ? 0.5 : -0.5);
+              velocities[i].y += (obj.position.y > mousePosition.current.y * 800 ? 0.5 : -0.5);
+            }
+          }
+        });
+      }
 
       renderer.render(scene, camera);
     };
@@ -84,9 +139,10 @@ const StarBackground = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('click', handleClick);
       containerRef.current?.removeChild(renderer.domElement);
     };
-  }, []);
+  }, [isStarMode]);
 
   return <div ref={containerRef} className="fixed top-0 left-0 w-full h-full -z-10" />;
 };
