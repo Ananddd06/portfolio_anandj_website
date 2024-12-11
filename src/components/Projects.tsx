@@ -6,7 +6,7 @@ const projects = [
   {
     title: 'ATS-Friendly Resume Builder',
     description: 'Craft perfect, ATS-friendly resumes effortlessly with live editing and stunning templates!',
-    image: 'https://private-user-images.githubusercontent.com/122982405/393731452-fb8e726c-3227-493a-bbf3-5ab04a0d6363.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzM4ODU2OTMsIm5iZiI6MTczMzg4NTM5MywicGF0aCI6Ii8xMjI5ODI0MDUvMzkzNzMxNDUyLWZiOGU3MjZjLTMyMjctNDkzYS1iYmYzLTVhYjA0YTBkNjM2My5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMjExJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTIxMVQwMjQ5NTNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mMGIyMTkyMjNmZmViNTY5MTdmNjhlMWE2ZDNhYmVkYjJjOWJlM2MwOTQ5Zjk1MTBhYTFiNzMxMDFhZDM4Y2I5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.A2cXLE02LCTUIjP4EBJFU6PEcItm_prYYBSIhMx6E0M',
+    image: 'https://alison.com/html/site/img/resume-builder/build-a-resume.svg',
     tech: ['React', 'Node.js', 'Clerk', 'BrainTree' , 'Tailwind'],
     links: {
       github: 'https://github.com/Ananddd06/Resume_Builder_Website',
